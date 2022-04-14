@@ -57,6 +57,7 @@ class PrefViewModel @Inject constructor(
                 _state.value = state.value.copy(
                     isChecked = action.isChecked
                 )
+                setStatus(isChecked = action.isChecked)
             }
             is Actions.OnLangChanged -> {
                 _state.value = state.value.copy(
@@ -67,6 +68,7 @@ class PrefViewModel @Inject constructor(
                         Events.CloseSheet
                     )
                 }
+                setLang(lang = action.lang)
             }
             is Actions.OnModeChanged -> {
                 _state.value = state.value.copy(
@@ -77,6 +79,7 @@ class PrefViewModel @Inject constructor(
                         Events.CloseSheet
                     )
                 }
+                setMode(mode = action.mode)
             }
         }
     }
@@ -146,6 +149,54 @@ class PrefViewModel @Inject constructor(
                     isChecked = it
                 )
             }
+        }
+    }
+
+    private fun setMode(mode: AppMode) {
+        viewModelScope.launch {
+            repo.putAppMode(
+                mode = when (mode) {
+                    AppMode.DEFAULT -> {
+                        -1
+                    }
+                    AppMode.LIGHT -> {
+                        1
+                    }
+                    AppMode.DARK -> {
+                        2
+                    }
+                    AppMode.SYSTEM -> {
+                        3
+                    }
+                }
+            )
+        }
+    }
+
+    private fun setLang(lang: AppLang) {
+        viewModelScope.launch {
+            repo.putAppLang(
+                lang = when (lang) {
+                    AppLang.DEFAULT -> {
+                        -1
+                    }
+                    AppLang.ENGLISH -> {
+                        1
+                    }
+                    AppLang.MYANMAR -> {
+                        2
+                    }
+                    AppLang.KOREA -> {
+                        3
+                    }
+                }
+            )
+        }
+    }
+
+    private fun setStatus(isChecked: Boolean) {
+        viewModelScope.launch {
+            repo.putPrivateStatus(isPrivate = isChecked)
         }
     }
 }
