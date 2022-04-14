@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">JetpackDataStoreSample</string>
+
+    <string name="setting_mode">App Mode</string>
+    <string name="setting_lang">App Language</string>
+    <string name="setting_private">Private Profile</string>
+
+    <string name="lang_en">English</string>
+    <string name="lang_mm">Myanmar</string>
+    <string name="lang_ko">Korea</string>
+    <string name="lang_def">Not chosen</string>
+
+    <string name="mode_light">Light Mode</string>
+    <string name="mode_dark">Dark Mode</string>
+    <string name="mode_system">System Mode</string>
+    <string name="mode_def">Not chosen</string>
+
+    <string name="top_pref">Pref Settings</string>
+    <string name="top_proto">ProtoSettings</string>
+
+    <string name="btn_pref">Pref</string>
+    <string name="btn_proto">Proto</string>
+</resources>
